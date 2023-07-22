@@ -8,3 +8,9 @@
   width: 50%;
   padding: 10px;
 }
+
+.btn {
+  display: flex;
+  justify-content: space-between;
+  width: 25%;
+}

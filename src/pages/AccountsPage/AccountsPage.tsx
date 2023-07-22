@@ -1,12 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { useAuthContext } from '../../contexts';
 import { Storage } from '../../utils';
 
 import './AccountsPage.css';
+import axios from 'axios';
 
 export const AccountsPage = () => {
+  const [userData, setUserData] = useState<any>(null);
+  const [isLoading, setLoading] = useState(true);
   const TOKEN_KEY = 'accessToken';
   const navigate = useNavigate();
   const { authState, setAuthState } = useAuthContext();
@@ -16,6 +19,24 @@ export const AccountsPage = () => {
         navigate('/');
         setAuthState({});
   };
+
+  //fetch user data
+  useEffect(() => {
+    const fetchUserData = async () => {
+          const response = await axios.post('https://prometheus-xlri-production.up.railway.app/auth/getUserDetails', authState.username, {
+            headers: {
+              'Content-Type': 'text/plain',
+            },
+          });
+          const {name, email, about} = response.data;
+          setUserData({name, email, about});
+          setLoading(false);
+        };
+    
+      if (authState.username) {
+        fetchUserData();          
+      }
+    }, [authState.username]);
   // redirect if user is not logged in
   useEffect(() => {
     if (!authState.username) {
@@ -24,16 +45,16 @@ export const AccountsPage = () => {
   }, [authState.username, navigate]);
   return (
     <>
-      <div className="accounts__container">
-        <div>Accounts Page</div>
-        <div>
-          <span>Sign Out </span>
-          <FaSignOutAlt onClick={signOutHandler} />
-        </div>
-      </div>
       <div className="info__container">
         <div className='card'>
-          <h3>Welcome, {authState.username}</h3>
+          <h3>Welcome, {userData?.name}</h3>
+          <h5>Here are your details</h5>
+          <div>Email: {userData?.email}</div>
+          <div>Roll No.: {userData?.about}</div>
+          <div className='btn-outline-secondary btn rounded' onClick={signOutHandler}>
+          <span>Sign Out </span>
+          <FaSignOutAlt />
+        </div>
         </div>
       </div>
     </>

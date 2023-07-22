@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 import { AuthService } from '../../services';
 import { SignUpForm } from './SignUpForm';
 import { useAuthContext } from '../../contexts';
@@ -18,15 +20,13 @@ export const SignUpPage = () => {
     try {  
       if (result.data) {
           const { username } = result.data;
-          console.log(result.data);
           AuthService.setAccessToken(username);
-          //@ts-ignore
+          toast.success('Sign up successful');
           setAuthState({ ...authState, username });
       }
     } catch (error) {
       console.log(error);
-    
-  };
+    };
   };
 
   // redirect if user is already logged in
@@ -37,22 +37,25 @@ export const SignUpPage = () => {
   }, [authState.username, navigate]);
 
   return (
-    <main className="h-screen flex flex-col">
-      <div className="flex-grow-1" />
-      <div className="signUpPage py-4 px-2">
-        <div className="container">
-          <img
-            src={Logo}
-            alt="logo"
-            width="190px"
-            className="container__logo"
-          />
+    <>
+      <ToastContainer />
+      <main className="h-screen flex flex-col">
+        <div className="flex-grow-1" />
+        <div className="signUpPage py-4 px-2">
+          <div className="container">
+            <img
+              src={Logo}
+              alt="logo"
+              width="190px"
+              className="container__logo"
+            />
+          </div>
+          <div className="signUpForm container py-4 px-2">
+            <SignUpForm onSubmit={handleSubmit} />
+          </div>
         </div>
-        <div className="signUpForm container py-4 px-2">
-          <SignUpForm onSubmit={handleSubmit} />
-        </div>
-      </div>
-      <div className="flex-grow-2" />
-    </main>
+        <div className="flex-grow-2" />
+      </main>
+    </>
   );
 };
