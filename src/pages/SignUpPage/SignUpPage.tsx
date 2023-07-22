@@ -6,10 +6,10 @@ import { useAuthContext } from '../../contexts';
 import './SignUpPage.css';
 import { FormEntity } from '../../models';
 import axios from 'axios';
+import Logo from '../../assets/prometheus-logo.png';
 
 export const SignUpPage = () => {
   const navigate = useNavigate();
-  const logo = '../../assets/prometheus-logo.png';
   const { authState, setAuthState } = useAuthContext();
 
   /* istanbul ignore next */
@@ -44,7 +44,7 @@ export const SignUpPage = () => {
       <div className="signUpPage py-4 px-2">
         <div className="container">
           <img
-            src={logo}
+            src={Logo}
             alt="logo"
             width="190px"
             className="container__logo"

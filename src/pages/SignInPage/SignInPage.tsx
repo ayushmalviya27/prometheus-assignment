@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthService } from '../../services';
 import { SignInForm } from './SignInForm';
 import { useAuthContext } from '../../contexts';
+import Logo from '../../assets/prometheus-logo.png';
 import './SignInPage.css';
 import axios from 'axios';
 
@@ -12,7 +13,6 @@ type Credentials = {
 }
 export const SignInPage = () => {
   const navigate = useNavigate();
-  const logo = '../../assets/prometheus-logo.png';
   const { authState, setAuthState } = useAuthContext();
 
   /* istanbul ignore next */
@@ -45,7 +45,7 @@ export const SignInPage = () => {
       <div className="signInPage py-4 px-2">
         <div className="container">
           <img
-            src={logo}
+            src={Logo}
             alt="logo"
             width="190px"
             className="container__logo"
