@@ -1,0 +1,10 @@
+.accounts__container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.info__container {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
