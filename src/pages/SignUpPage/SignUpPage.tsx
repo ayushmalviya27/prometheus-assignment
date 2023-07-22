@@ -4,13 +4,12 @@ import { AuthService } from '../../services';
 import { SignUpForm } from './SignUpForm';
 import { useAuthContext } from '../../contexts';
 import './SignUpPage.css';
-// @ts-ignore
-import logo from '../../assets/prometheus-logo.png';
 import { FormEntity } from '../../models';
 import axios from 'axios';
 
 export const SignUpPage = () => {
   const navigate = useNavigate();
+  const logo = '../../assets/prometheus-logo.png';
   const { authState, setAuthState } = useAuthContext();
 
   /* istanbul ignore next */

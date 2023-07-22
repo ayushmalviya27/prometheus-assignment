@@ -1,5 +1,3 @@
-import React from 'react';
-
 /**
  * This is a placeholder for the NotFound page
  */

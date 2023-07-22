@@ -4,8 +4,6 @@ import { AuthService } from '../../services';
 import { SignInForm } from './SignInForm';
 import { useAuthContext } from '../../contexts';
 import './SignInPage.css';
-//@ts-ignore
-import logo from '../../assets/prometheus-logo.png';
 import axios from 'axios';
 
 type Credentials = {
@@ -14,6 +12,7 @@ type Credentials = {
 }
 export const SignInPage = () => {
   const navigate = useNavigate();
+  const logo = '../../assets/prometheus-logo.png';
   const { authState, setAuthState } = useAuthContext();
 
   /* istanbul ignore next */

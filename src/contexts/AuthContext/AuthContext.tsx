@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import { User } from '../../models';
 
 // ---------- AuthContext ----------
 type AuthState = { username?: string };
