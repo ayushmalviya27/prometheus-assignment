@@ -9,7 +9,6 @@ import axios from 'axios';
 
 export const AccountsPage = () => {
   const [userData, setUserData] = useState<any>(null);
-  const [isLoading, setLoading] = useState(true);
   const TOKEN_KEY = 'accessToken';
   const navigate = useNavigate();
   const { authState, setAuthState } = useAuthContext();
@@ -30,7 +29,6 @@ export const AccountsPage = () => {
           });
           const {name, email, about} = response.data;
           setUserData({name, email, about});
-          setLoading(false);
         };
     
       if (authState.username) {
