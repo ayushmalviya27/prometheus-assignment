@@ -12,7 +12,6 @@ export const SignUpPage = () => {
   const navigate = useNavigate();
   const { authState, setAuthState } = useAuthContext();
 
-  /* istanbul ignore next */
   const handleSubmit = async (formEntity: FormEntity) => {
     console.log(formEntity);
     const result = await axios.post('https://prometheus-xlri-production.up.railway.app/auth/create-user', {...formEntity, about: formEntity.rollnumber});
@@ -31,7 +30,6 @@ export const SignUpPage = () => {
   };
 
   // redirect if user is already logged in
-  /* istanbul ignore next */
   useEffect(() => {
     if (authState.username) {
       navigate('/accounts');

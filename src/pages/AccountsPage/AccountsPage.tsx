@@ -11,14 +11,12 @@ export const AccountsPage = () => {
   const navigate = useNavigate();
   const { authState, setAuthState } = useAuthContext();
 
-  /* istanbul ignore next */
   const signOutHandler = () => {
         Storage.remove(TOKEN_KEY);
         navigate('/');
         setAuthState({});
   };
   // redirect if user is not logged in
-  /* istanbul ignore next */
   useEffect(() => {
     if (!authState.username) {
       navigate('/signin');

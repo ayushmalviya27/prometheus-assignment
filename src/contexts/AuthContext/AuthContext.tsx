@@ -20,7 +20,6 @@ const AuthContextProvider: React.FC = ({ children }: any) => {
 // ---------- useAuthContext ----------
 function useAuthContext() {
   const authContext = useContext(AuthContext);
-  /* istanbul ignore next */
   if (authContext === undefined) {
     throw new Error('useAuthContext must be used within a AuthContextProvider');
   }

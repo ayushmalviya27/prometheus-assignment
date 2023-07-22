@@ -12,7 +12,6 @@ function checkLocalStorageEnabled() {
     localStorage.removeItem(x);
     return true;
   } catch (e) {
-    /* istanbul ignore next */
     return false;
   }
 }
@@ -38,7 +37,6 @@ function get(key: string, defaultValue?: any): any {
     const item = localStorage.getItem(key);
     return item !== null ? JSON.parse(item) : defaultValue;
   } else {
-    /* istanbul ignore next */
     return defaultValue;
   }
 }
